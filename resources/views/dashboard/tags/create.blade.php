@@ -8,11 +8,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('admin/sidebar.dashboard')}} </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('index.tag')}}">  الوسوم </a>
+                                <li class="breadcrumb-item"><a href="{{route('index.tag')}}">  {{__('admin/sidebar.tags')}} </a>
                                 </li>
-                                <li class="breadcrumb-item active"> اضافة وسم
+                                <li class="breadcrumb-item active">  {{__('admin/sidebar.new tag')}}
                                 </li>
                             </ol>
                         </div>
@@ -53,7 +53,7 @@
                                                  <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> الاسم
+                                                            <label for="projectinput1"> {{__('admin/sidebar.name')}}
                                                                  </label>
                                                             <input type="text" id="name"
                                                                    class="form-control"
@@ -68,7 +68,7 @@
 
                                                      <div class="col-md-6">
                                                          <div class="form-group">
-                                                             <label for="projectinput1"> اسم بالرابط
+                                                             <label for="projectinput1"> {{__('admin/sidebar.slug')}}
                                                              </label>
                                                              <input type="text" id="name"
                                                                     class="form-control"
@@ -91,10 +91,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> {{__('admin/sidebar.Back')}}
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> {{__('admin/sidebar.Save')}}
                                                 </button>
                                             </div>
                                         </form>

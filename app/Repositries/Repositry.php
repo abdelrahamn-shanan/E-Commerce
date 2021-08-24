@@ -10,7 +10,7 @@ class Repositry implements \App\Http\Interfaces\RepoInterface
     }
 
     public function index(){
-        return $this->model->all();
+        return $this->model->all(); 
     }
     public function create(array $data){
         return $this->model->create();

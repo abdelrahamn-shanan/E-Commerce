@@ -26,7 +26,7 @@ class ProfileRequest extends FormRequest
         return [
             'name'=>'required|string',
             'email'=> 'required|email|unique:admins,email,'.$this->id,
-            'password'=>'nullable|confirmed|min:6',
+            'password'=>'required|confirmed|min:6',
         ];
     }
 
@@ -36,6 +36,7 @@ class ProfileRequest extends FormRequest
            'required'=>'هذا الحقل مطلوب ',
            'email.email'=>'صيغة البريد الالكترونى غير صحيحة',
            'password.min'=>'الرقم السري قصير جدا  ',
+           'password.confirmed'=>'الرقم السري غير متطابق',
         ];
     }
 }

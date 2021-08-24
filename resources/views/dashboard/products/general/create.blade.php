@@ -87,14 +87,17 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> وصف المنتج
                                                             </label>
-                                                            <textarea  name="description" id="description"
+                                                            <textarea class="description" name="description">
+                                                            {{old('description')}}</textarea>
+
+                                                            <!--<textarea  name="description" id="description"
                                                                    class="form-control"
                                                                    placeholder="  "
-                                                            >{{old('description')}}</textarea>
+                                                            >{{old('description')}}</textarea>-->
 
                                                             @error("description")
                                                             <span class="text-danger">{{$message}}</span>
@@ -102,7 +105,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                       <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> الوصف المختصر
                                                             </label>
@@ -118,14 +121,14 @@
                                                     </div>
 
                                                 </div>
-
+                                             
 
                                                 <div class="row" >
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> اختر القسم
                                                             </label>
-                                                            <select name="categories[]" class="select2 form-control" multiple>
+                                                            <select name="Categories[]" class="select2 form-control" multiple >
                                                                 <optgroup label="من فضلك أختر القسم ">
                                                                     @if($categories && $categories -> count() > 0)
                                                                         @foreach($categories as $category)
@@ -134,8 +137,8 @@
                                                                         @endforeach
                                                                     @endif
                                                                 </optgroup>
-                                                            </select>
-                                                            @error('categories.0')
+                                                            </select>  
+                                                            @error('Categories.*')
                                                             <span class="text-danger"> {{$message}}</span>
                                                             @enderror
                                                         </div>
@@ -154,7 +157,7 @@
                                                                     @endif
                                                                 </optgroup>
                                                             </select>
-                                                            @error('tags')
+                                                            @error('tags.*')
                                                             <span class="text-danger"> {{$message}}</span>
                                                             @enderror
                                                         </div>
@@ -227,15 +230,12 @@
 @stop
 
 @section('script')
-
-    <script>
-        $('input:radio[name="type"]').change(
-            function(){
-                if (this.checked && this.value == '2') {  // 1 if main cat - 2 if sub cat
-                    $('#cats_list').removeClass('hidden');
-                }else{
-                    $('#cats_list').addClass('hidden');
-                }
-            });
-    </script>
-    @stop
+<script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.description',
+        width: 650,
+        height: 300
+    });
+</script>
+ @stop

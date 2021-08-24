@@ -5,13 +5,13 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> اقسام المتجر </h3>
+                    <h3 class="content-header-title"> {{__('admin\sidebar.StoreDept')}}  </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('admin\sidebar.dashboard')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active">  اقسام المتجر
+                                <li class="breadcrumb-item active">   {{__('admin\sidebar.StoreDept')}} 
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع اقسام المتجر </h4>
+                                    <h4 class="card-title">  {{__('admin\sidebar.StoreDept')}} </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -47,12 +47,12 @@
                                             class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead class="">
                                             <tr>
-                                                <th>الاسم </th>
-                                                <th> الاسم بالرابط </th>
-                                                <th>القسم الرئيسي </th>
-                                                <th>الحالة</th>
-                                                <th>صوره القسم</th>
-                                                <th>الإجراءات</th>
+                                                <th>@lang('admin\sidebar.name') </th>
+                                                <th> @lang('admin\sidebar.slug')</th>
+                                                <th> @lang('admin\sidebar.maincat') </th>
+                                                <th>@lang('admin\sidebar.status')</th>
+                                                <th>@lang('admin\sidebar.Img') </th>
+                                                <th>@lang('admin\sidebar.procedures')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -62,25 +62,25 @@
                                                     <tr>
                                                         <td>{{$category -> name}}</td>
                                                         <td>{{$category -> slug}}</td>
-                                                        <td>{{$category ->MainParent->name}}</td>
-                                                        <td>{{$category -> getActive()}}</td>
-                                                        <td> <img style="width: 150px; height: 100px;" src="{{$category->photo}}"></td>
+                                                        <td>{{optional($category ->MainParent)->name}}</td>
+                                                        <td>{{$category ->getActive()}}</td>
+                                                        <td> <img style="width: 150px; height: 100px;" src="{{$category->photo}}"></td>    
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
                                                                 <a href="{{route('edit.category',$category -> id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">{{__('admin\sidebar.modify')}}</a>
 
 
                                                                 <a href="{{route('delete.category',$category -> id)}}"
-                                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</a>
+                                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">{{__('admin\sidebar.delete')}}</a>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             @endisset
                                             </tbody>
-                                            {{$category->links}}
+                                           
                                         </table>
                                         <div class="justify-content-center d-flex">
 

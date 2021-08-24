@@ -1,4 +1,8 @@
 @extends('layouts.admin')
+@section('title')
+{{__('admin\profile.personalProfile update')}}
+@show
+
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
@@ -7,10 +11,10 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('admin\profile.dashboard')}} </a>
                                 </li>
 
-                                <li class="breadcrumb-item active"> الملف الشخصي
+                                <li class="breadcrumb-item active">  {{__('admin\profile.personalProfile')}}
                                 </li>
                             </ol>
                         </div>
@@ -24,7 +28,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> تعديل بيانات الملف الشخصي </h4>
+                                    <h4 class="card-title" id="basic-layout-form">  {{__('admin\profile.personalProfile update')}} </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -52,7 +56,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> الاسم </label>
+                                                            <label for="projectinput1"> {{__('admin\profile.name')}} </label>
                                                             <input type="text" value="{{$admin -> name  }}" id="name"
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -64,7 +68,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> البريد الإلكتروني  </label>
+                                                            <label for="projectinput1">  {{__('admin\profile.email')}}  </label>
                                                             <input type="text" value="{{$admin -> email  }}" id=""
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -76,11 +80,11 @@
                                                     </div>
 
                                                 </div>
-
+                                                
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">  كلمة المرور الجديده </label>
+                                                            <label for="projectinput1">    {{__('admin\profile.new password')}} </label>
                                                             <input type="password" value="" id=""
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -92,7 +96,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> تاكيد كلمة المرور   </label>
+                                                            <label for="projectinput1">{{__('admin\profile.confirm password')}}</label>
                                                             <input type="password" value="" id=""
                                                                    class="form-control"
                                                                    placeholder=" "
@@ -109,7 +113,7 @@
                                             <div class="form-actions">
 
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> {{__('admin\profile.save')}}
                                                 </button>
                                             </div>
                                         </form>

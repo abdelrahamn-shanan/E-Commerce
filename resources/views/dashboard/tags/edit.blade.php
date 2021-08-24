@@ -8,11 +8,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('admin/sidebar.dashboard')}} </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('index.tag')}}"> الوسوم </a>
+                                <li class="breadcrumb-item"><a href="{{route('index.tag')}}"> {{__('admin/sidebar.tags')}} </a>
                                 </li>
-                                <li class="breadcrumb-item active"> تعديل - {{$tag -> name}}
+                                <li class="breadcrumb-item active"> {{__('admin/sidebar.modify')}} - {{$tag -> name}}
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> تعديل الوسم </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> {{__('admin/sidebar.modify')}} {{__('admin/sidebar.tags')}} </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -48,16 +48,16 @@
                                               enctype="multipart/form-data">
                                             @csrf
 
-                                            <input name="id" value="{{$tag -> id}}" type="hidden">
+                                           <!-- <input name="id" value="{{$tag -> id}}" type="hidden"> -->
 
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات الوسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> {{__('admin/sidebar.tag data')}}  </h4>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> الاسم
+                                                            <label for="projectinput1"> {{__('admin/sidebar.name')}}
                                                             </label>
                                                             <input type="text" id="name"
                                                                    class="form-control"
@@ -71,7 +71,7 @@
                                                     </div>
                                                        <div class="col-md-6">
                                                               <div class="form-group">
-                                                                  <label for="projectinput1"> اسم بالرابط
+                                                                  <label for="projectinput1">  {{__('admin/sidebar.slug')}}
                                                                   </label>
                                                                   <input type="text" id="name"
                                                                          class="form-control"
@@ -91,10 +91,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> {{__('admin/sidebar.Back')}}
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
+                                                    <i class="la la-check-square-o"></i> {{__('admin/sidebar.Save')}}
                                                 </button>
                                             </div>
                                         </form>

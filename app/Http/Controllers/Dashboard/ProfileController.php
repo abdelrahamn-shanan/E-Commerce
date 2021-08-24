@@ -5,18 +5,26 @@ use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
 use DB;
+use Auth;
+use Illuminate\Support\Facades\Hash;
+
 class ProfileController extends Controller
 {
-    public function edit(){
-          $admin = Admin::find( auth('admin')->user()->id) ;
-          return view ('dashboard.profile.edit' , compact('admin'));
+
+    public function GetCurrentPassword(){
+      return view ('dashboard.profile.password_verify');
     }
 
+    public function Verify(Request  $request){
+      $admin = Admin::find(auth('admin')->user()->id) ;
+      if (Hash::check($request['old_password'], $admin['password'])) 
+        return view ('dashboard.profile.edit',compact('admin'));  
+        return redirect()->back()->with(['error' => ' الرقم السري غير صحيح ']); 
+    }
     public function update(ProfileRequest $request ){
-          // validation
-       
-       try{  // saving
+       try{  
         $admin= Admin::findorfail(auth('admin')->user()->id);
         DB::beginTransaction();
         if($request->filled('password'))
@@ -28,10 +36,10 @@ class ProfileController extends Controller
         $admin->update($request->all());
           $admin->save();
           DB::commit();
-          return redirect()->back()->with(['success' => ' تم التحديث بنجاح']);
+          return redirect()->route("admin.dashboard")->with(['success' => ' تم التحديث بنجاح']);
         }catch(\Exception $ex)
         {
-            return redirect()->back()->with(['error' => ' حدث خطا ما يرجي المحاولة لاحقا ']);
+            return redirect()->route("admin.dashboard")->with(['error' => ' حدث خطا ما يرجي المحاولة لاحقا ']);
             DB:rollback();
         }
     }

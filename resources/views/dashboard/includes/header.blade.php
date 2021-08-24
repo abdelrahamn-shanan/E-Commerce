@@ -30,16 +30,16 @@
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                <span class="mr-1">مرحبا
+                <span class="mr-1">{{__('admin\header.Hi')}}
                   <span
                       class="user-name text-bold-700">  {{auth('admin') -> user() -> name}}</span>
                 </span>
                          </a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('edit.profile')}}"><i
-                                    class="ft-user"></i> تعديل الملف الشحصي </a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('CurrentPassword')}}"><i
+                                    class="ft-user"></i>  {{__('admin\header.Profile Update')}}  </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="ft-power"></i> تسجيل
-                                الخروج </a>
+                            <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="ft-power"></i> 
+                            {{__('admin\header.Logout ')}}  </a>
                         </div>
                     </li>
 
@@ -47,7 +47,7 @@
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="mr-1">
                   <span
-                      class="user-name text-bold-700">  {{App::getLocale()}}</span>
+                      class="user-name text-bold-700"> {{ LaravelLocalization::getCurrentLocaleName() }}</span>
                 </span>
 
                         </a>

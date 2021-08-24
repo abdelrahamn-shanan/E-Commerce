@@ -22,21 +22,7 @@ protected $with = ['translations'];
  *
  * @var array
  */
-protected $fillable = [
-    'brand_id',
-     'slug',
-    'sku',
-    'price',
-    'special_price',
-    'special_price_type',
-    'special_price_start',
-    'special_price_end',
-    'selling_price',
-    'manage_stock',
-    'qty',
-    'in_stock',
-    'is_active'
-];
+protected $guarded = [];
 
 /**
  * The attributes that should be cast to native types.
@@ -47,6 +33,8 @@ protected $casts = [
     'manage_stock' => 'boolean',
     'in_stock' => 'boolean',
     'is_active' => 'boolean',
+    'special_price_start' => 'string',
+    'special_price_end' => 'string',
 ];
 
 /**
@@ -81,7 +69,7 @@ protected $translatedAttributes = ['name', 'description', 'short_description'];
 
 public function brand()
 {
-    return $this->belongsTo(Brand::class)->withDefault();
+    return $this->belongsTo(Brand::class)->withDefault(); 
 }
 
 public function categories()
@@ -95,5 +83,31 @@ public function tags()
 {
     return $this->belongsToMany(Tag::class, 'product_tags');
 }
+
+public function productimages()
+    {
+        return $this->hasMany(Image::class)->select('id','photo');
+    }
+
+public function scopeSelection($query)
+{
+
+    return $query->select('id','sku' ,'qty' , 'in_stock' , 'manage_stock','slug'
+    , 'is_active','price' , 'created_at' , 'updated_at' , 'special_price_start', 'special_price_end');
+}
+
+public function scopeActive($query){
+    return $query->where('is_active' , 1);
+    }
+    
+public function  getActive(){
+
+    return   $this -> is_active == 1 ? 'مفعل' : ' غير مفعل';
+    }
+    
+ public function options()
+    {
+        return $this->hasMany(Option::class, 'product_id');
+    } 
 
 }

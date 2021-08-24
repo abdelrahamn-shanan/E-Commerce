@@ -10,7 +10,14 @@ class LogoutController extends Controller
 {
     public function logout()
     {
-        auth()->logout(); 
-       return redirect()->route('admin.login');
+        $gaurd = $this->getGaurd();
+        $gaurd->logout();
+
+        return redirect()->route('admin.login');
+    }
+
+    private function getGaurd()
+    {
+        return  auth('admin') ; 
     }
 }

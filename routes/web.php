@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('test' , function (){
-    $category = App\Models\Category::find(3);
-    $category ->makevisible(['translations']);
-    return $category;
+    return \App\Models\Category::Childs()->get();
+    
+});
+Route::get('testlayouts' , function (){
+    return view('layouts.admin');
 });

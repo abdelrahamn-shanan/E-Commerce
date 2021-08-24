@@ -25,16 +25,15 @@ class BrandRequest extends FormRequest
     {
         return [
             'photo' => 'required_without:id|mimes:jpg,jpeg,png',
-            'name'=> 'required',
+            'name' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'required_without:id'=>'هذا الحقل مطلوب',
-            'photo.required' => 'هذا الحقل مطلوب',
-            'name.required'=> 'هذا الحقل مطلوب',
+            'required_without:id' => __('admin\requests\sidebar.required'),
+            'required' => __('admin\requests\sidebar.required'),
         ];
     }
 }

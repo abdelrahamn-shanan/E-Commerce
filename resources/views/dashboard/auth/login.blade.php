@@ -17,7 +17,7 @@
                             <span>الدخول للوحة التحكم </span>
                         </h6>
                     </div>
-                    @include('dashboard.includes.alerts.errors')
+                  @include('dashboard.includes.alerts.errors')
                 @include('dashboard.includes.alerts.success')
                     <div class="card-content">
                         <div class="card-body">
@@ -49,14 +49,15 @@
                                     @enderror
 
                                 </fieldset>
-                                <div class="form-group row">
+                              <div class="form-group row">
                                     <div class="col-md-6 col-12 text-center text-md-left">
                                         <fieldset>
-                                            <input type="checkbox" name="remember_me" id="remember-me"
-                                                   class="chk-remember">
+                                            <input type="checkbox" name="remember_me" id="remember-me"   
+                                                   class="chk-remember"checked value= 1> 
                                             <label for="remember-me">تذكر دخولي</label>
                                         </fieldset>
                                     </div>
+                                    
 
                                 </div>
                                 <button type="submit" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i>
@@ -69,5 +70,5 @@
             </div>
         </div>
     </section>
-
     @stop
+    

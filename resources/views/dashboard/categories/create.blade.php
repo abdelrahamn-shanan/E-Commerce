@@ -8,11 +8,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('admin\sidebar.dashboard')}} </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('index.category')}}"> الاقسام الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('index.category')}}">  {{__('admin\sidebar.StoreDept')}} </a>
                                 </li>
-                                <li class="breadcrumb-item active">  أضافه قسم 
+                                <li class="breadcrumb-item active">   {{__('admin\sidebar.new cat')}} 
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> أضافة قسم  </h4>
+                                    <h4 class="card-title" id="basic-layout-form">  {{__('admin\sidebar.new cat')}}   </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -51,7 +51,7 @@
 
 
                                             <div class="form-group">
-                                                <label> صوره القسم </label>
+                                                <label>  {{__('admin\sidebar.Img')}}  </label>
                                                 <label id="projectinput7" class="file center-block">
                                                     <input type="file" id="file" name="photo">
                                                     <span class="file-custom"></span>
@@ -63,17 +63,17 @@
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i>  {{__('admin\sidebar.data')}}  </h4>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم القسم
+                                                            <label for="projectinput1">  {{__('admin\sidebar.name')}}
                                                                  </label>
                                                             <input type="text" id="name"
                                                                    class="form-control"
                                                                    placeholder="  "
                                                                    value="{{old('name')}}"
-                                                                   name="name">
+                                                                   name="name"  >
                                                             @error("name")
                                                             <span class="text-danger">{{$message}}</span>
                                                             @enderror
@@ -82,9 +82,9 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم بالرابط
+                                                            <label for="projectinput1">  {{__('admin\sidebar.slug')}}
                                                             </label>
-                                                            <input type="text" id="name"
+                                                            <input type="text" id="slug"
                                                                    class="form-control"
                                                                    placeholder="  "
                                                                    value="{{old('slug')}}"
@@ -99,17 +99,22 @@
                                                 <div class="row hidden" id="cats_list" >
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اختر القسم الرئيسي
+                                                            <label for="projectinput1">   {{__('admin\sidebar.maincat')}}
                                                             </label>
                                                             <select name="parent_id" class="select2 form-control">
-                                                                <optgroup label="من فضلك أختر القسم ">
+                                                                <optgroup label="   {{__('admin\sidebar.MainCategory')}} ">
                                                                     @if($categories && $categories -> count() > 0)
                                                                         @foreach($categories as $category)
-                                                                            <option
-                                                                                value="{{$category -> id }}">{{$category -> name}}</option>
+                                                                            <option value="{{$category -> id }}">{{$category -> name}}</option> 
+                                                                                @foreach($category->MainChild as $sub)
+                                                                                  <option value="{{$sub->id}}">-{{$sub->name}}</option>
+                                                                                  @foreach($sub->MainChild as $subsub)
+                                                                                      <option value="{{$subsub->id}}">--{{$subsub->name}}</option>
+                                                                                    @endforeach
+                                                                                @endforeach
                                                                         @endforeach
                                                                     @endif
-                                                                </optgroup>
+                                                                            </optgroup>
                                                             </select>
                                                             @error('parent_id')
                                                             <span class="text-danger"> {{$message}}</span>
@@ -128,7 +133,7 @@
                                                                    class="switchery" data-color="success"
                                                                   checked />
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة  </label>
+                                                                   class="card-title ml-1">{{__('admin\sidebar.status')}}  </label>
 
                                                             @error("is_active")
                                                             <span class="text-danger">{{$message }}</span>
@@ -140,14 +145,13 @@
                                                             <input type="radio"
                                                                    name="type"
                                                                    value="1" 
-                                                                   checked
                                                                    class="switchery"
                                                                    data-color="success"
                                                             />
 
                                                             <label
                                                                 class="card-title ml-1">
-                                                                قسم رئيسي
+                                                                {{__('admin\sidebar.MainCat')}}
                                                             </label>
 
                                                         </div>
@@ -163,7 +167,8 @@
 
                                                             <label
                                                                 class="card-title ml-1">
-                                                                قسم فرعي
+                                                                {{__('admin\sidebar.SubCat')}}
+
                                                             </label>
 
                                                         </div>
@@ -175,10 +180,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> {{__('admin\sidebar.Back')}}
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> {{__('admin\sidebar.Save')}}
                                                 </button>
                                             </div>
                                         </form>
@@ -206,5 +211,17 @@
                     $('#cats_list').addClass('hidden');
                 }
             });
+    </script>
+
+    <script>
+     window.onload = function() {
+    var src = document.getElementById("name"),
+        dst = document.getElementById("slug");
+    src.addEventListener('input', function() {
+        dst.value = src.value;
+        dst.value=dst.value.replaceAll(" ","_");
+
+    });
+};
     </script>
     @stop

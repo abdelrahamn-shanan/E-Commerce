@@ -22,19 +22,19 @@ class SettingController extends Controller
           $shippingMethod =  Setting::where('key', 'outer_label')->first();
     
         else
-          $shippingMethod = Setting::where('key', 'free_shipping_label')->first();
+          return redirect()->route('admin.dashboard')->with(['error' => 'وسيلة توصيل غير صحيحه ']);
 
         return  view('dashboard.settings.shippings.edit' , compact('shippingMethod')) ;
     }
 
     public function updateShippingMethods(shippingsRequest $request , $id){
-         
+      
             try{
-
-                $shippingMethod = Setting::findorfail($id);
+                $shippingMethod = Setting::find($id);
                 DB::beginTransaction();
                 $shippingMethod->update(['plain_value' => $request->plain_value,]);
-                $shippingMethod->value = $request->value;
+               //$shippingMethod->plain_value = $request->plain_value;
+                $shippingMethod->value = $request->value; //save translation
                 $shippingMethod->save();
                 DB::commit();
                 return redirect()->back()->with(['success' => ' تم التحديث بنجاح']);

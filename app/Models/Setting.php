@@ -8,7 +8,7 @@ use Astrotomic\Translatable\Translatable;
 
 class Setting extends Authenticatable
 {
-    use Translatable;
+    use Translatable; //trait
 
     /**
      * The relations to eager load on every query.

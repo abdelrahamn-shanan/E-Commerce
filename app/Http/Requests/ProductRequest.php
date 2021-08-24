@@ -28,10 +28,18 @@ class ProductRequest extends FormRequest
             'slug' => 'required|unique:products,slug',
             'description' => 'required|max:1000',
             'short_description' => 'nullable|max:500',
-            'categories' => 'array|min:1', //[]
-            'categories.*' => 'numeric|exists:categories,id',
+            'Categories' => 'required|array|min:1', //[]
+            'Categories.0' => 'required|numeric|exists:categories,id',
             'tags' => 'nullable',
             'brand_id' => 'required|exists:brands,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'هذا الحقل مطلوب',
+           
         ];
     }
 }

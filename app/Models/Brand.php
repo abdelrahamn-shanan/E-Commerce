@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
+
 use Astrotomic\Translatable\Translatable;
-use App\Http\Requests\MainCategoryRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
@@ -16,7 +16,6 @@ class Brand extends Model
      */
     protected $with = ['translations'];
 
-
     protected $translatedAttributes = ['name'];
 
     /**
@@ -24,7 +23,7 @@ class Brand extends Model
      *
      * @var array
      */
-    protected $fillable = ['is_active' ,'photo'];
+    protected $fillable = ['is_active', 'photo'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,22 +41,18 @@ class Brand extends Model
          'is_active' => 'boolean',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
-     public function scopeActive($query){
-        return $query->where('is_active' , 1);
-        }
-
-    public function  getActive(){
-
-        return   $this -> is_active == 1 ? 'مفعل' : ' غير مفعل';
+    public function getActive()
+    {
+        return   $this->is_active == 1 ? __('admin/sidebar.active') : __('admin/sidebar.not active');
     }
 
     public function getPhotoAttribute($val) // accessors
     {
-        return ($val !== null) ? asset('assets/' . $val) : "";
-
+        return ($val !== null) ? asset('assets/'.$val) : '';
     }
-
-
-
 }
