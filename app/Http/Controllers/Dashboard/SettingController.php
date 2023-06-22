@@ -30,7 +30,7 @@ class SettingController extends Controller
     public function updateShippingMethods(shippingsRequest $request , $id){
       
             try{
-                $shippingMethod = Setting::find($id);
+                 $shippingMethod = Setting::find($id);
                 DB::beginTransaction();
                 $shippingMethod->update(['plain_value' => $request->plain_value,]);
                //$shippingMethod->plain_value = $request->plain_value;

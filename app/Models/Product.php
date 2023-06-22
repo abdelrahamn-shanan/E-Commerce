@@ -84,9 +84,9 @@ public function tags()
     return $this->belongsToMany(Tag::class, 'product_tags');
 }
 
-public function productimages()
+public function images()
     {
-        return $this->hasMany(Image::class)->select('id','photo');
+        return $this->hasMany(Image::class)->select('product_id','photo');
     }
 
 public function scopeSelection($query)
@@ -105,9 +105,34 @@ public function  getActive(){
     return   $this -> is_active == 1 ? 'مفعل' : ' غير مفعل';
     }
     
- public function options()
+public function options()
     {
         return $this->hasMany(Option::class, 'product_id');
     } 
+
+public function  Users(){
+        return $this->belongsToMany(User::class,'wish_lists','product_id');
+    }
+
+    public function hasStock($quantity)
+    {
+        return $this->qty >= $quantity;
+    }
+
+    public function outOfStock()
+    {
+        return $this->qty === 0;
+    }
+
+    public function inStock()
+    {
+        return $this->qty >= 1;
+    }
+
+    public function getTotal($converted = true)
+    {
+        return $total =  $this->special_price ?? $this -> price;
+
+    }
 
 }

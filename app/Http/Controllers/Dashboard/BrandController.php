@@ -33,8 +33,9 @@ class BrandController extends Controller
             }
             $fileName = '';
             if ($request->has('photo')) {
-                $fileName = uploadImage('brands', $request->photo);
+                $fileName = uploadImage('brands',$request->photo);
             }
+           // return public_path()."\ " .$fileName;
             DB::beginTransaction();
 
             $brand = Brand::create($request->except('_token', 'photo'));
@@ -46,7 +47,6 @@ class BrandController extends Controller
             return redirect()->route('index.brand')->with(['success' => __('admin/SuccessMsg.success add')]);
         } catch (\Exception $ex) {
             DB::rollback();
-
             return redirect()->route('index.brand')->with(['error' => __('admin/SuccessMsg.error add')]);
         }
     }
@@ -107,10 +107,10 @@ class BrandController extends Controller
                 return redirect()->route('index.brand')->with(['error' => __('admin/SuccessMsg.Not Found')]);
             }
 
-            if ($brand->photo) {
+          /*  if ($brand->photo) {
                 $Image = getImage($brand->photo);
                 unlink($Image);
-            }
+            }*/
             $brand->delete();
 
             return redirect()->route('index.brand')->with(['success' => __('admin/SuccessMsg.success delete')]);

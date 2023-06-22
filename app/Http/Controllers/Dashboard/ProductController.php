@@ -67,6 +67,7 @@ class ProductController extends Controller
         return redirect()->route('index.product')->with(['success' => 'تم ألاضافة بنجاح']);
       }catch(\Exception $ex)
       {
+        return $ex;
         return redirect()->route('index.product')->with(['error' => '  حدث خطأ ما يرجى المحاوله لاحقا']);
       }
 
@@ -97,7 +98,7 @@ class ProductController extends Controller
                            ,'special_price_start','special_price_end']));
         return redirect()->route('index.product')->with(['success' => 'تم التحديث بنجاح']);   
       }catch(\Exception $ex)
-      { return $ex;
+      { 
         return redirect()->route('index.product')->with(['error' => '  حدث خطأ ما يرجى المحاولة فيما بعد']);   
       }
      
@@ -165,20 +166,19 @@ class ProductController extends Controller
 
 
     public function ImageIndex($id){
-      $products=Product::find($id);
+       $products=Product::find($id);
       if(! $products )
         return redirect()->route('index.product')->with(['error'=> 'هذا المنتج غير موجود']);
-        $images = $products->productimages;
-        return view('dashboard.products.images.index',compact('images'));
+           $images = $products->images;
+        return view('dashboard.products.images.index',['images'=>$images]);
     
  }
 
  public function delete($id){
   try{
-    $image=Image::find($id);
+     $image=Image::where('product_id',$id)->first();
     if (!$image)
     return redirect()->route('index.product')->with(['error' => 'هذا المنتج غير موجود']);
-    $img= getImage($image);
     $Image = getImage($image->photo);
     unlink($Image);
     $image->delete();

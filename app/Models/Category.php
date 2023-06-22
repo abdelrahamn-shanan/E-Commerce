@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+    use HasFactory;
     use Translatable;
 
     /**
@@ -71,8 +73,14 @@ class Category extends Model
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    // get all childrens
     public function MainChild()
     {
-        return $this->hasMany('App\Models\Category', 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,'product_categories' ,'category_id');
     }
 }

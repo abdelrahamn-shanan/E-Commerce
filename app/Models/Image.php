@@ -26,6 +26,11 @@ class Image extends Model
         return ($val !== null) ? asset('assets/'.$val) : '';
     }
 
+    public function products()
+{
+    return $this->belongsTo(Product::class, 'id');
+}
+
 
 
     

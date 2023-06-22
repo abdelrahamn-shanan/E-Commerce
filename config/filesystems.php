@@ -57,7 +57,7 @@ return [
 
         'maincategories' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/images/maincategories/',
+            'root' => public_path() . 'tenancy/assets/assets/images/maincategories/',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
@@ -71,7 +71,7 @@ return [
 
         'brands' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/images/brands/',
+            'root' => public_path() . '/tenancy/assets/assets/images/brands/',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
@@ -83,9 +83,16 @@ return [
             'visibility' => 'public',
         ],
 
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/images/sliders/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+
         'products' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/images/products/',
+            'root' => public_path() . '/tenancy/assets/assets/images/products/',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],

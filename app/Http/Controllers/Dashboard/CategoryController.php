@@ -37,6 +37,7 @@ class CategoryController extends Controller
             // upload image
             $filePath = '';
             if ($request->has('photo')) {
+
                 $filePath = uploadImage('maincategories', $request->photo);
             }
             // if user choose maincategory remove parent_id
@@ -112,10 +113,10 @@ class CategoryController extends Controller
                 return redirect()->route('index.category')->with(['error' => __('admin/SuccessMsg.Not Found')]);
             }
 
-            if ($category->photo) {
+          /*  if ($category->photo) {
                 $Image = getImage($category->photo);
                 unlink($Image);
-            }
+            }*/
             $category->delete();
 
             return redirect()->route('index.category')->with(['success' => __('admin/SuccessMsg.success delete')]);
